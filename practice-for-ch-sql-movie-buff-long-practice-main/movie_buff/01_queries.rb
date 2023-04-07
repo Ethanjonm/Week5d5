@@ -60,8 +60,9 @@ def directed_by_one_of(them)
   
   # Note: Directors appear in the 'actors' table.
   Movie.select(:id,:title)
-    .joins(:actors)
-    .where('actors.')
+    .joins(:director)
+    .where(actors: {name: them} )
+    # .where("actors.name IN ('#{them[0]}', '#{them[1]}')")
 end
 
 def movie_names_before_1940
